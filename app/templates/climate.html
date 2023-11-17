@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% import "bootstrap5/form.html" as wtf %}
+
+{% block app_content %}
+
+<h1 class="display-1">Price prediciton based on climate change factors</h1>
+
+<!-- Graph + relevant details should go here -->
+<h1>My Plot</h1>
+    <img src="{{ url_for('static', filename=image_path) }}" alt="My Plot">
+
+<h3 class="display-3">Enter an indep_var to predict</h3>
+ <div class="row">
+        <div class="col-md-4">
+            {{ wtf.render_form(form)}}
+        </div>
+  </div>
+ 
+<h3>Pridicted value for that indep_var</h3>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Prediction indep_var</th>
+      <th scope="col">Predicted price</th>
+    </tr>
+  </thead>
+  <tbody>
+  	<tr>
+      <td class="lead">{{ question }}</td>
+      <td class="lead">{{ answer }}</td>
+    </tr>
+  </tbody>
+</table>
+
+{% endblock %} 

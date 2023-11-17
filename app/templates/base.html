@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {% block head %}
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    {% block styles %}
+      <!-- Bootstrap CSS -->
+      {{ bootstrap.load_css() }}
+    {% endblock %}
+
+    <title>
+      {% block title %}
+        {% if title %}
+          {{ title }} - Food price predictor
+        {% else %}
+          Welcome to Food price predictor
+        {% endif %}
+      {% endblock %}
+    </title>
+    {% endblock %}
+  </head>
+  <body>
+    {% block navbar %}
+      <nav class="navbar  navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+    
+            <a class="navbar-brand" href="{{ url_for('index') }}">Food price predictor</a>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#bs-example-navbar-collapse-1">
+            </button>
+    
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item"><a class="nav-link" href="{{ url_for('index') }}">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="{{ url_for('climate') }}">Climate</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    {% endblock %}
+    
+    <!-- Your page content -->
+    {% block content %}
+      <div class="container">  
+        {% block app_content %}{% endblock %}
+      </div>
+    {% endblock %}
+    
+    {% block scripts %}
+      {{ bootstrap.load_js() }}
+      <script type="module">import * as library from './static/__target__/clientlibrary.js'; window.library = library;</script>
+    {% endblock %}
+  </body>
+</html>

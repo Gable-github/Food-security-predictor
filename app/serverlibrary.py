@@ -6,9 +6,9 @@ import os
 
 
 def malnourished():
-
-    df_number_of_people_undernourished = pd.read_csv("../number_of_people_undernourished.csv")
-    df_political_stability_index = pd.read_csv("../political_stability_index.csv")
+    df_number_of_people_undernourished = pd.read_csv("number_of_people_undernourished.csv")
+    # df_number_of_people_undernourished = pd.read_csv("../number_of_people_undernourished.csv")
+    df_political_stability_index = pd.read_csv("political_stability_index.csv")
 
     df_number_of_people_undernourished['Year'] = df_number_of_people_undernourished['Year'].str[:4]
     df_number_of_people_undernourished['Year'] = df_number_of_people_undernourished['Year'].astype('int64')
@@ -26,8 +26,10 @@ def malnourished():
     myplot.set_xlabel('number of people undernourished (millions)')
     myplot.set_ylabel('political stability index')
 
-    myplot.figure.savefig('static/myplot.png')
+    myplot.figure.savefig('app\static\myplot.png')
     print("File saved successfully")
+
+
 # plt.show()
 
 

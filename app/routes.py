@@ -16,11 +16,12 @@ def index():
 @application.route('/climate', methods = ["GET", "POST"])
 def climate():
 	form = CreateQuestionForm()
-	# if os.path.exists('static/myplot.png'):
-	# 	pass
-	# else:
-	# 	malnourished()
-	malnourished()
+	if os.path.exists('app\static\myplot.png'):
+		print("exists")
+	else:
+		print("running malnourished")
+		malnourished()
+
 	if form.validate_on_submit():
 		answer = Dataset_climate.query.filter_by(indep_var=form.indep_var.data).first()
 		# flash('Here is the predicted price for the specified indep var.')
@@ -29,7 +30,7 @@ def climate():
 	return render_template('climate.html', title='Climate', form=form, image_path='myplot.png')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    application.run(debug=True)
 
 # @application.route('/challenges', methods=['GET', 'POST'])
 # @login_required

@@ -5,9 +5,8 @@ import numpy as np
 import os
 
 
-def malnourished():
+def politics():
     df_number_of_people_undernourished = pd.read_csv("number_of_people_undernourished.csv")
-    # df_number_of_people_undernourished = pd.read_csv("../number_of_people_undernourished.csv")
     df_political_stability_index = pd.read_csv("political_stability_index.csv")
 
     df_number_of_people_undernourished['Year'] = df_number_of_people_undernourished['Year'].str[:4]
@@ -26,9 +25,14 @@ def malnourished():
     myplot.set_xlabel('number of people undernourished (millions)')
     myplot.set_ylabel('political stability index')
 
-    myplot.figure.savefig('app\static\myplot.png')
+    # do regression and add it here
+
+    myplot.figure.savefig('app\static\politics.png')
     print("File saved successfully")
 
+def politics_find(indep_var):
+    pass
+    # to find the predicted y value for indep_var using the line of regression
 
 # plt.show()
 

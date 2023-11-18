@@ -3,7 +3,7 @@ from app import application
 from flask import render_template, flash, redirect, url_for
 from app.forms import CreateQuestionForm
 from app.models import Dataset_climate
-from app.serverlibrary import malnourished
+from app.serverlibrary import politics, politics_find
 # from werkzeug.urls import url_parse
 from app import db
 from flask import request 
@@ -13,21 +13,24 @@ from flask import request
 def index():
 	return render_template('index.html', title='Home')
 
-@application.route('/climate', methods = ["GET", "POST"])
-def climate():
+@application.route('/political_climate', methods = ["GET", "POST"])
+def political_climate():
 	form = CreateQuestionForm()
-	if os.path.exists('app\static\myplot.png'):
+	if os.path.exists('app\static\politics.png'):
 		print("exists")
 	else:
-		print("running malnourished")
-		malnourished()
+		print("running politics")
+		politics()
 
 	if form.validate_on_submit():
-		answer = Dataset_climate.query.filter_by(indep_var=form.indep_var.data).first()
+		indep_var = form.indep_var.data
+		answer = politics_find(indep_var)
+		# answer = Dataset_climate.query.filter_by(indep_var=form.indep_var.data).first()
 		# flash('Here is the predicted price for the specified indep var.')
-		return render_template('climate.html', title='Climate', form=form)
+		return render_template('political_climate.html', title='Political climate', question=indep_var, answer=answer, form=form, image_path='politics.png')
 		# return render_template('climate.html', title='Climate', question=form.indep_var.data, answer=answer, form=form)
-	return render_template('climate.html', title='Climate', form=form, image_path='myplot.png')
+	return render_template('political_climate.html', title='Political climate', form=form, image_path='politics.png')
+
 
 if __name__ == '__main__':
     application.run(debug=True)

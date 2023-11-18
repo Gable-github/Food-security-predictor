@@ -3,13 +3,13 @@
 
 {% block app_content %}
 
-<h1 class="display-1">Price prediciton based on climate change factors</h1>
+<h1 class="display-1">Price prediciton based on political instability</h1>
 
 <!-- Graph + relevant details should go here -->
 <h1>My Plot</h1>
     <img src="{{ url_for('static', filename=image_path) }}" alt="My Plot">
 
-<h3 class="display-3">Enter an indep_var to predict</h3>
+<h4 class="display-3">Enter an indep_var to predict</h4>
  <div class="row">
         <div class="col-md-4">
             {{ wtf.render_form(form)}}
